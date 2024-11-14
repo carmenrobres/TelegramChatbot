@@ -1,6 +1,6 @@
 # TelegramChatbot: AI-Powered Assistant Bot with Google Drive Integration
 
-A versatile Telegram chatbot integrated with OpenAI's ChatGPT, Google Drive API, and WhisperAI for a multi-functional bot. This bot can interpret text, images, and audio messages, storing all interactions in a Google Sheets document for easy data management and analysis. The bot is highly customizable and can be adapted to different use cases.
+A versatile Telegram chatbot integrated with OpenAI's ChatGPT, Google Drive API, and WhisperAI for a multi-functional bot. This bot can interpret text, images, and audio messages, storing all interactions in a Google Sheets document for easy data management and analysis. The bot is highly customizable and can be adapted to different use cases. With a personalized DataBase you can prompt any type of bot to answer as your assistant bot. 
 
 ## 🚀 Features
 
@@ -85,10 +85,6 @@ Langchain is not really needed but it can be a key element after if you have a b
 python main.py
 ```
 
-## 🔧 Customization
-
-## 📖 API Configuration Guide
-
 ## 📂 Project Structure
 ```bash
 TelegramChatbot/
@@ -106,14 +102,109 @@ TelegramChatbot/
     └── Telegram.py             # Telegram message handlers
 ├── assistant/                 
     └── instructions.txt        # Assistant Instructions
-├── docs/static/                 
-    └── instructions.txt        # Assistant Instructions
+├── docs/static/                 # DO NOT TOUCH
+├── .storage                 # DO NOT TOUCH - Location where the vector store is saved.
+    └── assitant.json          #your chatgpt assitant information. if you earase the file it will create another bot. 
+    └── chat_mappings.db
 └── .env                    # Environment variables
-
 ```
+
+## 🔧 Customization
+You can easily customize various aspects of the bot's responses and behavior:
+
+1. **Assistant Role Customization**:
+   - In the `Assistant` folder, you’ll find `instructions.txt`. Here, you can define and customize the role of your assistant, tailoring its personality and response style.
+
+2. **Changing the Assistant's Name**:
+   - Open `assistant.py` and update the assistant's name on **line 20**. This name will be reflected in your ChatGPT Playground Project.
+
+3. **Telegram Bot Customization**:
+   - In `integrations/Telegram.py`, you can modify the following:
+     - The **trigger greeting** (line 122): This automated response prevents unnecessary token usage by ChatGPT.
+     - The **welcome message** for the `/start` command (line 142).
+     - The **welcome message** when a greeting word is detected (line 152).
+
+4. **Database Customization**:
+   - The bot uses a JSON file for data storage located at `resources/DataSet.json`. You can modify this file using standard JSON format to update or add new data.
+
+5. **Image Processing Customization**:
+   - If you want to change how images are processed, you can update the logic in `integrations/Telegram.py` on **line 250**.
+
+6. **Bot Profile Customization**:
+   - To modify the bot’s name, user image, and description, use **@BotFather** on Telegram.
+
+7. **Flask App Customization**:
+   - To modify the  information set on the Flask app go to `templates/index.html`. Right now it has a basic text but you can enhance the app by adding more information.
+
+
+## 📖 API Configuration Guide
+
+### Telegram Bot API
+Open Telegram and search for BotFather.
+Use the command /newbot and follow the instructions to create your bot.
+Copy the token and paste it into your .env file as TELEGRAM_API_KEY.
+
+### OpenAI API
+Go to OpenAI's API [website](https://platform.openai.com/docs/overview)
+Sign up or log in.
+Select a project, go to Dashboard, API keys.
+Create a new API key.
+Add the API key to your .env file as OPENAI_API_KEY.
+
+### Google Drive API
+Create a Google Sheet file. It has to have these columns in this order: `USER |	MESSAGE	 |	ANSWER	 |	TIME`
+Go to Google Cloud Console and log in
+Create a new project and enable the Google Drive API and Google Sheets API.
+Through API & Services, Create credentials and download the JSON file, saving it as credentials.json.
+Share your Google Sheet with the service account email in the JSON file.
+Paste the json file as client_key.json in the main folder.
+
 
 ## 🤖 Usage
 
-## How it Works
+Once you have the bot set up and running, you can interact with it directly on Telegram. Here’s what you can do:
+
+1. **Text Interaction**:
+   - Simply type your message to the bot, and it will respond based on the assistant role defined in `instructions.txt`. The bot personalizes its responses using your Telegram username for a more engaging experience.
+
+2. **Audio Interpretation**:
+   - You can send voice messages to the bot. It uses Whisper AI to transcribe the audio and then responds accordingly based on the assistant’s role and personality settings.
+
+3. **Image Interpretation**:
+   - Share an image with the bot, and it will analyze it using DALL-E API, providing a detailed response based on the image and text you add.
+
+4. **Automated Greeting**:
+   - When you start the chat with the `/start` command or send a greeting, the bot automatically sends a welcome message without using extra tokens from the ChatGPT API.
+
+5.**Basic Flask Server**:
+   - The project also includes a small Flask server that currently serves a simple text information. This sets the stage for potential future web-based enhancements.
+
+
+Enjoy your personalized chatbot experience and feel free to customize the bot’s role to fit your needs!
+
+## 📚 Libraries Used
+This project utilizes a variety of Python libraries for different functionalities. Here’s a breakdown of each:
+
+- **`flask`**: Sets up a basic web server, allowing for future web-based features and enhancements.
+- **`openai`**: Connects to OpenAI’s API for text interpretation, image analysis, and conversational responses.
+- **`langchain`**: Enhances document processing, embeddings, and other advanced natural language processing tasks.
+- **`tenacity`**: Implements robust retry mechanisms for API calls, ensuring error handling and stability.
+- **`pytelegrambotapi`**: Manages the integration with Telegram, enabling seamless user interactions with the bot.
+- **`nltk`**: Provides tools for natural language processing, including text tokenization, stemming, and analysis.
+- **`deep-translator`**: Offers translation capabilities, allowing the bot to understand and respond in multiple languages.
+- **`SoundFile`**: Handles audio input, enabling the bot to process and interpret voice messages.
+- **`requests`**: Facilitates sending HTTP requests to external APIs and services.
+- **`langdetect`**: Automatically detects the language of user input for better processing and response generation.
+- **`faiss-cpu`**: Provides efficient similarity search and clustering, ideal for handling and searching embeddings.
+- **`packaging`**: Manages version checks and comparisons for package dependencies.
+- **`langsmith`**: Integrates with LangChain for enhanced tracing, logging, and management of NLP operations.
+
 
 ## References
+This project was inspired by and incorporates ideas and structures from similar AI chatbot projects. For additional insights and inspiration, check out the following repositories:
+
+- [WattWise-AI-Bot (Replit Integration)](https://github.com/TheWattWiseProject/WattWise-AI-Bot_REPLIT/tree/main): WattWise is your energy-awareness companion, blending AI technology and personalized advice to help you visualize your daily energy usage across food, transport, and the home. By combining available data and your input on daily habits, Wattwise provides real-time insights and advice to make small changes with a big collective impact.
+
+- [Slack-Example Bot](https://github.com/LAIA-GitHub/Slack-Example): A well-documented example of integrating an AI assistant with Slack, utilizing OpenAI's API and demonstrating effective bot interaction and automation.
+
+These projects served as valuable references in designing the architecture, features, and integrations for this Telegram chatbot.

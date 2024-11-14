@@ -16,7 +16,7 @@ LANGCHAIN_API_KEY = os.getenv('LANGCHAIN_API_KEY')
 LANGCHAIN_PROJECT = "CreAI Chatbot"
 
 # File paths
-assistant_file_path = '.storage/assistant.json'
+assistant_file_path = 'assistant/assistant.json'
 assistant_name = "CreAI"
 assistant_instructions_path = 'assistant/instructions.txt'
 
