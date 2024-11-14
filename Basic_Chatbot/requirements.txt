@@ -1,0 +1,14 @@
+jq
+flask
+openai
+langchain
+tenacity
+pytelegrambotapi
+nltk
+deep-translator
+SoundFile
+requests
+langdetect
+faiss-cpu
+packaging
+langsmith
