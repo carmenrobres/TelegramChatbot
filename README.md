@@ -71,11 +71,13 @@ LANGCHAIN_API_KEY="your-langchain-api-key"
 LANGCHAIN_PROJECT="CreAI"
 ```
 
-***Check up the API Configuration Guide to get your APIs***
+*Check up the API Configuration Guide to get your APIs*.
+
 Langchain is not really needed but it can be a key element after if you have a big data base.
 
 ### 5. Replace Google API file
-- Go to the Google Cloud Console.
+*Check up the API Configuration Guide to get more information*
+- Go to the [Google Cloud Console.](https://console.cloud.google.com/)
 - Create a new project or select an existing one.
 - Enable the Google Drive API and Google Sheets API.
 - Download the JSON credentials file and save it as client_key.json in the root directory.
@@ -141,22 +143,33 @@ You can easily customize various aspects of the bot's responses and behavior:
 
 ### Telegram Bot API
 Open Telegram and search for BotFather.
+
 Use the command /newbot and follow the instructions to create your bot.
+
 Copy the token and paste it into your .env file as TELEGRAM_API_KEY.
 
 ### OpenAI API
-Go to OpenAI's API [website](https://platform.openai.com/docs/overview)
+Go to OpenAI's API [website](https://platform.openai.com/docs/overview).
+
 Sign up or log in.
+
 Select a project, go to Dashboard, API keys.
+
 Create a new API key.
+
 Add the API key to your .env file as OPENAI_API_KEY.
 
 ### Google Drive API
 Create a Google Sheet file. It has to have these columns in this order: `USER |	MESSAGE	 |	ANSWER	 |	TIME`
-Go to Google Cloud Console and log in
+
+Go to Google Cloud Console and log in.
+
 Create a new project and enable the Google Drive API and Google Sheets API.
+
 Through API & Services, Create credentials and download the JSON file, saving it as credentials.json.
+
 Share your Google Sheet with the service account email in the JSON file.
+
 Paste the json file as client_key.json in the main folder.
 
 
@@ -181,23 +194,6 @@ Once you have the bot set up and running, you can interact with it directly on T
 
 
 Enjoy your personalized chatbot experience and feel free to customize the bot’s role to fit your needs!
-
-## 📚 Libraries Used
-This project utilizes a variety of Python libraries for different functionalities. Here’s a breakdown of each:
-
-- **`flask`**: Sets up a basic web server, allowing for future web-based features and enhancements.
-- **`openai`**: Connects to OpenAI’s API for text interpretation, image analysis, and conversational responses.
-- **`langchain`**: Enhances document processing, embeddings, and other advanced natural language processing tasks.
-- **`tenacity`**: Implements robust retry mechanisms for API calls, ensuring error handling and stability.
-- **`pytelegrambotapi`**: Manages the integration with Telegram, enabling seamless user interactions with the bot.
-- **`nltk`**: Provides tools for natural language processing, including text tokenization, stemming, and analysis.
-- **`deep-translator`**: Offers translation capabilities, allowing the bot to understand and respond in multiple languages.
-- **`SoundFile`**: Handles audio input, enabling the bot to process and interpret voice messages.
-- **`requests`**: Facilitates sending HTTP requests to external APIs and services.
-- **`langdetect`**: Automatically detects the language of user input for better processing and response generation.
-- **`faiss-cpu`**: Provides efficient similarity search and clustering, ideal for handling and searching embeddings.
-- **`packaging`**: Manages version checks and comparisons for package dependencies.
-- **`langsmith`**: Integrates with LangChain for enhanced tracing, logging, and management of NLP operations.
 
 
 ## References
